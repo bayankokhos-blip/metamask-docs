@@ -8,7 +8,7 @@ keywords: [multichain, caip, scope, caip-2, caip-10, caip-25, session, chain id]
 
 MetaMask Connect Multichain uses [CAIP](https://github.com/ChainAgnostic/CAIPs) (Chain Agnostic
 Improvement Proposals) standards to identify chains, accounts, and sessions across ecosystems.
-Understanding these concepts helps you work with the multichain client effectively.
+Understanding these concepts helps you work with the multichain client.
 
 ## Scopes (CAIP-2)
 

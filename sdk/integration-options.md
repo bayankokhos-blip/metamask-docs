@@ -6,8 +6,9 @@ keywords: [connect, sdk, integration, evm, solana, multichain, packages]
 
 # Integration options
 
-MetaMask Connect offers three integration paths. All share the same underlying transport and session
-infrastructure, so you can start with the option that fits your dapp today and migrate later.
+MetaMask Connect lets you add wallet connectivity to your dapp using one of three integration paths.
+All share the same underlying transport and session infrastructure, so you can start with the option
+that fits your dapp today and migrate later.
 
 ## Single-ecosystem
 
@@ -20,7 +21,7 @@ If your dapp targets a single ecosystem, use [`@metamask/connect-evm`](/sdk/evm)
 
 ## Multi-ecosystem
 
-f your dapp supports both EVM and Solana, use [`@metamask/connect-evm`](/sdk/evm) and
+If your dapp supports both EVM and Solana, use [`@metamask/connect-evm`](/sdk/evm) and
 [`@metamask/connect-solana`](/sdk/solana) together to
 support both ecosystems while keeping familiar provider interfaces for each.
 
