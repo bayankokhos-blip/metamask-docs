@@ -1,22 +1,41 @@
-### MetaMask Embedded Wallets Flutter quickstart
+import Tabs from '@theme/Tabs'
+import TabItem from '@theme/TabItem'
+
+### Set up your app
 
 This guide is designed to help you quickly integrate a basic instance of MetaMask Embedded wallets
-(Web3Auth) SDKs in your Flutter app.
+(Web3Auth) SDKs in your Flutter app. You may follow along with our demo app or configure your own. 
 
-Build the project locally:
-
-1. Clone the MetaMask Embedded Wallets Flutter quickstart application:
+2.1 (Optional) Clone the MetaMask Embedded Wallets Flutter quickstart application:
 
     ```shell npm2yarn
     npx degit Web3Auth/web3auth-flutter-examples/flutter-quick-start flutter-quick-start
     ```
 
-1. Change to the quickstart directory:
+2.2 Depending on the platform you wish to develop in, you will need to meet the following prerequisites:
 
-    ```shell npm2yarn
-    cd flutter-quick-start
-    ```
+<Tabs
+  defaultValue="android"
+  values={[
+    { label: 'Android', value: 'android' },
+    { label: 'iOS', value: 'ios' },
+  ]}>
+  <TabItem value="android">
 
-1. Run the project in [Android Studio](https://developer.android.com/studio) or [VS Code](https://code.visualstudio.com/).
+- Android API version 24 or later
+- `compileSdk` version 34 or later
 
-If you need help, visit the [Web3Auth community](https://web3auth.io/community/c/help-pnp/pnp-flutter/18).
+Refer to the `android/app/build.gradle` file in your Flutter project to update the versions.
+
+  </TabItem>
+  <TabItem value="ios">
+
+- iOS 14 or later
+- Xcode 12 or later
+- Swift 5 or later
+- `platform :ios` version 14.0
+
+Refer to the `ios/Podfile` file in your Flutter project to update the versions.
+
+  </TabItem>
+</Tabs>
