@@ -1,11 +1,43 @@
+import Tabs from '@theme/Tabs'
+import TabItem from '@theme/TabItem'
+
 ### Install the MetaMask Embedded Wallets Android SDK
 
-Add the Android SDK to the dependency list of your app-level `build.gradle`
-file. Add the latest `com.github.Web3Auth:web3auth-android-sdk` package.
+**Prerequisites**
+
+- Android API version 24+
+- `targetSdk` & `compileSdk` version 34+
+
+Refer to the `android/app/build.gradle` file in your project to update the versions.
+
+You may follow along with our demo app or configure your own.
+
+<Tabs
+  defaultValue="demo"
+  values={[
+    { label: 'Demo app', value: 'demo' },
+    { label: 'Set up your app', value: 'diy' },
+  ]}>
+  <TabItem value="demo">
+
+**2.1** Clone the quickstart:
+
+```shell npm2yarn
+npx degit Web3Auth/web3auth-android-examples/android-quick-start w3a-android-quick-start
+```
+
+**2.2** Open the project in Android Studio from the `w3a-android-quick-start` directory and sync the Gradle project (or build and run).
+
+  </TabItem>
+  <TabItem value="diy">
+
+Add the Android SDK to the dependency list of your app-level `build.gradle` file. Add the latest `com.github.Web3Auth:web3auth-android-sdk` package.
+
+  </TabItem>
+</Tabs>
 
 :::warning Update to the latest SDK
 
-View the release notes to ensure you're using the [latest version](https://github.com/Web3Auth/web3auth-android-sdk/releases) of
-the Android SDK.
+View the release notes to ensure you're using the [latest version](https://github.com/Web3Auth/web3auth-android-sdk/releases) of the Android SDK.
 
 :::

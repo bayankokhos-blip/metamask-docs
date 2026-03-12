@@ -1,4 +1,32 @@
+import Tabs from '@theme/Tabs'
+import TabItem from '@theme/TabItem'
+
 ### Set up the Wagmi provider
+
+<Tabs
+  defaultValue="demo"
+  values={[
+    { label: 'Demo app', value: 'demo' },
+    { label: 'Set up your app', value: 'diy' },
+  ]}>
+  <TabItem value="demo">
+
+The demo app already has the Wagmi provider configured. You are ready to run the application:
+
+```bash
+npm run dev
+```
+
+Congratulations, your demo app is running at `http://localhost:5173`.
+
+:::tip
+
+We recommend using the rest of this wizard to walk through how the demo app has been set up.
+
+:::
+
+  </TabItem>
+  <TabItem value="diy">
 
 Since this example uses `@wagmi/vue`, wrap your app with the `WagmiProvider` component
 from `@web3auth/modal/vue/wagmi`.
@@ -10,3 +38,6 @@ import { WagmiProvider } from '@web3auth/modal/vue/wagmi'
 This example uses the standard Wagmi setup. You don't need to create a Wagmi configuration; the Web3Auth
 configuration is used directly. See the [Wagmi docs](https://wagmi.sh/vue/getting-started) for more
 information.
+
+  </TabItem>
+</Tabs>

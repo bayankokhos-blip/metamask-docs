@@ -1,11 +1,98 @@
+import Tabs from '@theme/Tabs'
+import TabItem from '@theme/TabItem'
+
 ### Install the MetaMask Embedded Wallets React Native SDK
 
-Install the SDK package in your React Native project.
+**Prerequisites**
+
+Depending on the platform you wish to develop for, meet the following:
+
+<Tabs
+  defaultValue="android"
+  values={[
+    { label: 'Android', value: 'android' },
+    { label: 'iOS', value: 'ios' },
+  ]}>
+  <TabItem value="android">
+
+- Android API version 23 or later
+- `compileSdk` version 34 or later
+
+Refer to the `android/app/build.gradle` file in your React Native project to update the versions.
+
+  </TabItem>
+  <TabItem value="ios">
+
+- iOS 14 or later
+- Xcode 12 or later
+- Swift 5 or later
+- `platform :ios` version 14.0
+
+Refer to the `ios/Podfile` file in your React Native project to update the versions.
+
+  </TabItem>
+</Tabs>
+
+You may follow along with our demo app or configure your own.
+
+<Tabs
+  defaultValue="demo"
+  values={[
+    { label: 'Demo app', value: 'demo' },
+    { label: 'Set up your app', value: 'diy' },
+  ]}>
+  <TabItem value="demo">
+
+**2.1** Clone the quickstart:
+
+```shell npm2yarn
+npx degit Web3Auth/web3auth-react-native-examples/rn-bare-quick-start w3a-quick-start
+```
+
+**2.2** Change to the quickstart directory, install dependencies, then run for your platform:
+
+<Tabs
+  defaultValue="ios"
+  values={[
+    { label: 'iOS', value: 'ios' },
+    { label: 'Android', value: 'android' },
+  ]}>
+  <TabItem value="ios">
+
+```shell npm2yarn
+cd w3a-quick-start
+npm install
+npm run ios
+```
+
+  </TabItem>
+  <TabItem value="android">
+
+```shell npm2yarn
+cd w3a-quick-start
+npm install
+npm run android
+```
+
+  </TabItem>
+</Tabs>
+
+  </TabItem>
+  <TabItem value="diy">
+
+Install the SDK package in your React Native project:
 
 ```bash npm2yarn
 npm install --save @web3auth/react-native-sdk @web3auth/base @web3auth/ethereum-provider
 ```
-Refer to the [installation instructions](/embedded-wallets/sdk/react-native/install) page for more
-information.
 
-[![Npm package monthly downloads](https://badgen.net/npm/dm/@web3auth/react-native-sdk)](https://www.npmjs.com/package/@web3auth/react-native-sdk) [![](https://data.jsdelivr.com/v1/package/npm/@web3auth/react-native-sdk/badge)](https://www.jsdelivr.com/package/npm/@web3auth/react-native-sdk)
+Refer to the [installation instructions](/embedded-wallets/sdk/react-native/install) page for more information.
+
+  </TabItem>
+</Tabs>
+
+:::caution
+
+The MetaMask Embedded Wallets React Native SDK is not compatible with Expo Go. Use an Expo Custom Dev Client or an EAS build instead. See the [troubleshooting section](/embedded-wallets/troubleshooting/metro-issues#update-your-metroconfigjs) for more information.
+
+:::

@@ -4,11 +4,11 @@ import STEPS from './stepContent'
 export default function getSteps(steps, files, replacementAggregator) {
   steps.push(
     {
-      ...STEPS.iOSQuickStart,
+      ...STEPS.registerApp,
       pointer: replacementAggregator.highlightRange(
         qsFileLinks.EW_PNP_IOS_VIEWMODEL_SWIFT,
         files[qsFileLinks.EW_PNP_IOS_VIEWMODEL_SWIFT],
-        'Quick Start'
+        'Get your Web3Auth Client ID from Dashboard'
       ),
     },
     {
@@ -17,14 +17,6 @@ export default function getSteps(steps, files, replacementAggregator) {
         qsFileLinks.EW_PNP_IOS_CONTENTVIEW_SWIFT,
         files[qsFileLinks.EW_PNP_IOS_CONTENTVIEW_SWIFT],
         'Installation'
-      ),
-    },
-    {
-      ...STEPS.registerApp,
-      pointer: replacementAggregator.highlightRange(
-        qsFileLinks.EW_PNP_IOS_VIEWMODEL_SWIFT,
-        files[qsFileLinks.EW_PNP_IOS_VIEWMODEL_SWIFT],
-        'Get your Web3Auth Client ID from Dashboard'
       ),
     },
     {
@@ -41,6 +33,14 @@ export default function getSteps(steps, files, replacementAggregator) {
         qsFileLinks.EW_PNP_IOS_VIEWMODEL_SWIFT,
         files[qsFileLinks.EW_PNP_IOS_VIEWMODEL_SWIFT],
         'Initialize Web3Auth'
+      ),
+    },
+    {
+      ...STEPS.runTheApp,
+      pointer: replacementAggregator.highlightRange(
+        qsFileLinks.EW_PNP_IOS_CONTENTVIEW_SWIFT,
+        files[qsFileLinks.EW_PNP_IOS_CONTENTVIEW_SWIFT],
+        'Installation'
       ),
     },
     {

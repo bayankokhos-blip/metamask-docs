@@ -18,14 +18,6 @@ export default function getSteps(
       ),
     },
     {
-      ...STEPS.reactQuickStart,
-      pointer: replacementAggregator.highlightRange(
-        qsFileLinks.EW_REACT_WEB3AUTHCONTEXT_TSX,
-        files[qsFileLinks.EW_REACT_WEB3AUTHCONTEXT_TSX],
-        'Quick Start'
-      ),
-    },
-    {
       ...STEPS.installation,
       pointer: replacementAggregator.highlightRange(
         qsFileLinks.EW_REACT_PACKAGE_JSON,

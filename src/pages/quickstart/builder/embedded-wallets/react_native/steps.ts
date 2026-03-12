@@ -10,27 +10,11 @@ export default function getSteps(
 ) {
   steps.push(
     {
-      ...STEPS.rnQuickStart,
+      ...STEPS.registerApp,
       pointer: replacementAggregator.highlightRange(
         qsFileLinks.EW_PNP_REACT_NATIVE_APP_TSX,
         files[qsFileLinks.EW_PNP_REACT_NATIVE_APP_TSX],
-        'Quick Start'
-      ),
-    },
-    {
-      ...STEPS.requirementsAndroid,
-      pointer: replacementAggregator.highlightRange(
-        qsFileLinks.EW_PNP_REACT_NATIVE_BUILD_GRADLE,
-        files[qsFileLinks.EW_PNP_REACT_NATIVE_BUILD_GRADLE],
-        'Requirements Android'
-      ),
-    },
-    {
-      ...STEPS.requirementsIOS,
-      pointer: replacementAggregator.highlightRange(
-        qsFileLinks.EW_PNP_REACT_NATIVE_PODFILE,
-        files[qsFileLinks.EW_PNP_REACT_NATIVE_PODFILE],
-        'Requirements iOS'
+        'Dashboard Registration'
       ),
     },
     {
@@ -47,14 +31,6 @@ export default function getSteps(
         qsFileLinks.EW_PNP_REACT_NATIVE_METRO_CONFIG_JS,
         files[qsFileLinks.EW_PNP_REACT_NATIVE_METRO_CONFIG_JS],
         'Bundler Issues'
-      ),
-    },
-    {
-      ...STEPS.registerApp,
-      pointer: replacementAggregator.highlightRange(
-        qsFileLinks.EW_PNP_REACT_NATIVE_APP_TSX,
-        files[qsFileLinks.EW_PNP_REACT_NATIVE_APP_TSX],
-        'Dashboard Registration'
       ),
     }
   )

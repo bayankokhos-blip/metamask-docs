@@ -1,4 +1,3 @@
-import * as vueQuickStart from './vueQuickStart.mdx'
 import * as vueBundlerIssues from './vueBundlerIssues.mdx'
 import * as login from './login.mdx'
 import * as logout from './logout.mdx'
@@ -12,7 +11,6 @@ import * as setupWagmiProvider from './setupWagmiProvider.mdx'
 import { toSteps } from '../../../../utils'
 
 const STEPS = toSteps({
-  vueQuickStart,
   vueBundlerIssues,
   installation,
   config,

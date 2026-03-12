@@ -10,11 +10,11 @@ export default function getSteps(
 ) {
   steps.push(
     {
-      ...STEPS.angularQuickStart,
+      ...STEPS.registerApp,
       pointer: replacementAggregator.highlightRange(
         qsFileLinks.EW_ANGULAR_APP_COMPONENT_TS,
         files[qsFileLinks.EW_ANGULAR_APP_COMPONENT_TS],
-        'Quick Start'
+        'Dashboard Registration'
       ),
     },
     {
@@ -31,14 +31,6 @@ export default function getSteps(
         qsFileLinks.EW_ANGULAR_POLYFILL_TS,
         files[qsFileLinks.EW_ANGULAR_POLYFILL_TS],
         'Bundler Issues'
-      ),
-    },
-    {
-      ...STEPS.registerApp,
-      pointer: replacementAggregator.highlightRange(
-        qsFileLinks.EW_ANGULAR_APP_COMPONENT_TS,
-        files[qsFileLinks.EW_ANGULAR_APP_COMPONENT_TS],
-        'Dashboard Registration'
       ),
     }
   )
@@ -70,6 +62,14 @@ export default function getSteps(
         qsFileLinks.EW_ANGULAR_APP_COMPONENT_TS,
         files[qsFileLinks.EW_ANGULAR_APP_COMPONENT_TS],
         'SDK Initialization'
+      ),
+    },
+    {
+      ...STEPS.runTheApp,
+      pointer: replacementAggregator.highlightRange(
+        qsFileLinks.EW_ANGULAR_APP_COMPONENT_TS,
+        files[qsFileLinks.EW_ANGULAR_APP_COMPONENT_TS],
+        'Config'
       ),
     },
     {

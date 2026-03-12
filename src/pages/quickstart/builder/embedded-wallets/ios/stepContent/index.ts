@@ -7,15 +7,14 @@ import * as initialization from './initialize.mdx'
 import * as installation from './installation.mdx'
 import * as login from './login.mdx'
 import * as logout from './logout.mdx'
-
-import * as iOSQuickStart from './iOSQuickStart.mdx'
+import * as runTheApp from './runTheApp.mdx'
 
 const STEPS = toSteps({
-  iOSQuickStart,
   installation,
   registerApp,
   allowlist,
   initialization,
+  runTheApp,
   login,
   getUserInfo,
   blockchainCalls,

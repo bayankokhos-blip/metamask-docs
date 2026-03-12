@@ -10,11 +10,11 @@ export default function getSteps(
 ) {
   steps.push(
     {
-      ...STEPS.vueQuickStart,
+      ...STEPS.registerApp,
       pointer: replacementAggregator.highlightRange(
         qsFileLinks.EW_VUE_WEB3AUTHCONTEXT_TSX,
         files[qsFileLinks.EW_VUE_WEB3AUTHCONTEXT_TSX],
-        'Quick Start'
+        'Dashboard Registration'
       ),
     },
     {
@@ -31,14 +31,6 @@ export default function getSteps(
         qsFileLinks.EW_VUE_CONFIG_JS,
         files[qsFileLinks.EW_VUE_CONFIG_JS],
         'Bundler Issues'
-      ),
-    },
-    {
-      ...STEPS.registerApp,
-      pointer: replacementAggregator.highlightRange(
-        qsFileLinks.EW_VUE_WEB3AUTHCONTEXT_TSX,
-        files[qsFileLinks.EW_VUE_WEB3AUTHCONTEXT_TSX],
-        'Dashboard Registration'
       ),
     }
   )

@@ -1,10 +1,40 @@
-### Install MetaMask Embedded Wallets Angular SDK
+import Tabs from '@theme/Tabs'
+import TabItem from '@theme/TabItem'
 
-Install the SDK package in your project. For blockchain calls, this example can run with `viem` or
-`ethers`, you can choose your preferred library.
+### Install the MetaMask Embedded Wallets Angular SDK
+
+You may follow along with our demo app or configure your own.
+
+<Tabs
+  defaultValue="demo"
+  values={[
+    { label: 'Demo app', value: 'demo' },
+    { label: 'Set up your app', value: 'diy' },
+  ]}>
+  <TabItem value="demo">
+
+**2.1** Clone the quickstart:
+
+```shell
+npx degit Web3Auth/web3auth-examples/quick-starts/angular-quick-start w3a-quick-start
+```
+
+**2.2** Install dependencies from the project root with:
+
+```bash
+npm install
+```
+
+  </TabItem>
+  <TabItem value="diy">
+
+Install the SDK package in your project. For blockchain calls, this example can run with `viem` or `ethers`; you can choose your preferred library:
 
 ```bash npm2yarn
 npm install --save @web3auth/modal viem
 ```
 
 [![Npm package monthly downloads](https://badgen.net/npm/dm/@web3auth/modal)](https://www.npmjs.com/package/@web3auth/modal) [![](https://data.jsdelivr.com/v1/package/npm/@web3auth/modal/badge)](https://www.jsdelivr.com/package/npm/@web3auth/modal)
+
+  </TabItem>
+</Tabs>

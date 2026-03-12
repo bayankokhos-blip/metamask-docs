@@ -18,14 +18,6 @@ export default function getSteps(
       ),
     },
     {
-      ...STEPS.nextjsQuickStart,
-      pointer: replacementAggregator.highlightRange(
-        qsFileLinks.EW_NEXTJS_LAYOUT_TSX,
-        files[qsFileLinks.EW_NEXTJS_LAYOUT_TSX],
-        'Quick Start'
-      ),
-    },
-    {
       ...STEPS.installation,
       pointer: replacementAggregator.highlightRange(
         qsFileLinks.EW_NEXTJS_PACKAGE_JSON,

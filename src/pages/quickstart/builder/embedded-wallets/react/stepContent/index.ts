@@ -1,4 +1,3 @@
-import * as reactQuickStart from './reactQuickStart.mdx'
 import * as reactBundlerIssues from './reactBundlerIssues.mdx'
 import * as login from './login.mdx'
 import * as logout from './logout.mdx'
@@ -12,7 +11,6 @@ import * as setupWagmiProvider from './setupWagmiProvider.mdx'
 import { toSteps } from '../../../../utils'
 
 const STEPS = toSteps({
-  reactQuickStart,
   reactBundlerIssues,
   installation,
   config,

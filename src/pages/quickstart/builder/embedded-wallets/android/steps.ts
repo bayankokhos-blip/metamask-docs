@@ -4,19 +4,11 @@ import STEPS from './stepContent'
 export default function getSteps(steps, files, replacementAggregator) {
   steps.push(
     {
-      ...STEPS.androidQuickStart,
+      ...STEPS.registerApp,
       pointer: replacementAggregator.highlightRange(
-        qsFileLinks.EW_PNP_ANDROID_MAINACTIVITY_KT,
-        files[qsFileLinks.EW_PNP_ANDROID_MAINACTIVITY_KT],
-        'Quick Start'
-      ),
-    },
-    {
-      ...STEPS.requirements,
-      pointer: replacementAggregator.highlightRange(
-        qsFileLinks.EW_PNP_ANDROID_BUILD_GRADLE,
-        files[qsFileLinks.EW_PNP_ANDROID_BUILD_GRADLE],
-        'Requirements'
+        qsFileLinks.EW_PNP_ANDROID_STRINGS_XML,
+        files[qsFileLinks.EW_PNP_ANDROID_STRINGS_XML],
+        'Get your Web3Auth Client ID from Dashboard'
       ),
     },
     {
@@ -49,14 +41,6 @@ export default function getSteps(steps, files, replacementAggregator) {
         qsFileLinks.EW_PNP_ANDROID_ANDROIDMANIFEST_XML,
         files[qsFileLinks.EW_PNP_ANDROID_ANDROIDMANIFEST_XML],
         'Enable Single Top'
-      ),
-    },
-    {
-      ...STEPS.registerApp,
-      pointer: replacementAggregator.highlightRange(
-        qsFileLinks.EW_PNP_ANDROID_STRINGS_XML,
-        files[qsFileLinks.EW_PNP_ANDROID_STRINGS_XML],
-        'Get your Web3Auth Client ID from Dashboard'
       ),
     },
     {

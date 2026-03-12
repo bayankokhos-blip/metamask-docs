@@ -1,7 +1,7 @@
 import Tabs from '@theme/Tabs'
 import TabItem from '@theme/TabItem'
 
-### Install the MetaMask Embedded Wallets Vue SDK
+### Install the MetaMask Embedded Wallets Next.js SDK
 
 You may follow along with our demo app or configure your own.
 
@@ -15,8 +15,8 @@ You may follow along with our demo app or configure your own.
 
 **2.1** Clone the quickstart:
 
-```shell
-npx degit Web3Auth/web3auth-examples/quick-starts/vue-quick-start w3a-quick-start
+```shell npm2yarn
+npx degit Web3Auth/web3auth-examples/quick-starts/nextjs-quick-start w3a-quick-start
 ```
 
 **2.2** Install dependencies from the project root with:
@@ -28,10 +28,10 @@ npm install
   </TabItem>
   <TabItem value="diy">
 
-Install the MetaMask Embedded Wallets SDK (Web3Auth) package in your project. Additionally, install `@wagmi/vue` and `@tanstack/vue-query` for blockchain calls:
+Install the Web3Auth SDK and the package you will use for blockchain calls (this demo uses `wagmi`):
 
 ```bash npm2yarn
-npm install --save @web3auth/modal @wagmi/vue @tanstack/vue-query
+npm install --save @web3auth/modal wagmi @tanstack/react-query
 ```
 
 [![Npm package monthly downloads](https://badgen.net/npm/dm/@web3auth/modal)](https://www.npmjs.com/package/@web3auth/modal) [![](https://data.jsdelivr.com/v1/package/npm/@web3auth/modal/badge)](https://www.jsdelivr.com/package/npm/@web3auth/modal)
