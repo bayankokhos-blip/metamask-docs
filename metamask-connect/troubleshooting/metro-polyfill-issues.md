@@ -21,7 +21,9 @@ It is compatible only with Custom Dev Client and [Expo Application Services (EAS
 [Prebuild your Expo app](https://docs.expo.dev/workflow/continuous-native-generation/#usage) to generate native code before proceeding.
 :::
 
-## Step 1: Install required packages
+## Steps
+
+### 1. Install required packages
 
 ```bash npm2yarn
 npm install react-native-get-random-values buffer readable-stream @react-native-async-storage/async-storage
@@ -32,7 +34,7 @@ npm install react-native-get-random-values buffer readable-stream @react-native-
 `buffer` provides the `Buffer` global.
 `@react-native-async-storage/async-storage` is needed for session persistence.
 
-## Step 2: Configure Metro
+### 2. Configure Metro
 
 Map Node.js built-in modules to React Native-compatible shims or an empty module stub.
 Create an empty module file first:
@@ -107,7 +109,7 @@ module.exports = config;
   </TabItem>
 </Tabs>
 
-## Step 3: Create the polyfills file
+### 3. Create the polyfills file
 
 Create `polyfills.ts` at the project root (or `src/polyfills.ts`) with all required global shims:
 
@@ -256,6 +258,6 @@ import "../polyfills"; // Must be second
 
 ## Next steps
 
-- [Troubleshooting overview](index.md)
-- [EVM React Native quickstart](../evm/quickstart/react-native.md)
-- [Solana React Native quickstart](../solana/quickstart/react-native.md)
+- See the [troubleshooting overview](index.md).
+- Follow the [EVM React Native quickstart](../evm/quickstart/react-native.md).
+- Follow the [Solana React Native quickstart](../solana/quickstart/react-native.md).

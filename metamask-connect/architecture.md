@@ -19,6 +19,8 @@ When a user connects, MetaMask Connect automatically handles the following:
 
 The following diagram illustrates this:
 
+<p align="center">
+
 ```mermaid
 flowchart TB
     subgraph dapp [Your dapp]
@@ -45,8 +47,10 @@ flowchart TB
     MobileApp --> Session
 ```
 
+</p>
+
 ## Next steps
 
-- [Explore integration options](./integration-options.md)
-- [View supported platforms and connection methods](./supported-platforms.md)
-- [Get started with EVM](./evm/index.md)
+- [Explore integration options.](./integration-options.md)
+- [View supported platforms and connection methods.](./supported-platforms.md)
+- [Get started with EVM networks.](./evm/index.md)
