@@ -22,7 +22,9 @@ Remove the old packages and install the new ones:
 
 ```bash npm2yarn
 # Remove old
-npm uninstall @metamask/sdk @metamask/sdk-react
+npm uninstall @metamask/sdk 
+# For React Native, remove
+npm uninstall @metamask/sdk-react
 
 # Install new (EVM only)
 npm install @metamask/connect-evm
@@ -43,7 +45,7 @@ own React context (see [React context pattern](#react-context-pattern-replacing-
 ```ts
 // remove-start
 - import { MetaMaskSDK } from '@metamask/sdk'
-- import { MetaMaskProvider, useSDK } from '@metamask/sdk-react'
+- import { MetaMaskProvider, useSDK } from '@metamask/sdk-react' // For React Native, remove these imports
 // remove-end
 ```
 
@@ -192,6 +194,15 @@ const txHash = await client.connectWith({
   chainIds: ['0x1'],
 })
 ```
+
+:::tip Bundler polyfill issues
+If your build fails with errors referencing `Buffer`, `process`, `stream`, `crypto`, or
+`global is not defined`, your bundler likely needs Node.js polyfills configured.
+See the fix for your bundler:
+- [Webpack 5 (CRA, Angular, Vue CLI)](../troubleshooting/webpack-polyfill-issues.md)
+- [Vite](../troubleshooting/vite-polyfill-issues.md)
+- [React Native Metro](../troubleshooting/metro-polyfill-issues.md)
+:::
 
 ## 5. Update provider access
 
@@ -393,3 +404,4 @@ surface in one environment but not the other.
 - [Manage user accounts](./guides/manage-user-accounts.md)
 - [Send transactions](./guides/send-transactions/index.md)
 - [Production readiness checklist](./guides/best-practices/production-readiness.md)
+- [Troubleshoot polyfill issues](../troubleshooting/index.md)
