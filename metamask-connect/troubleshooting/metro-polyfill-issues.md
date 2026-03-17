@@ -242,13 +242,13 @@ import "../polyfills"; // Must be second
 
 **Cause**: Metro does not know how to resolve Node.js built-in modules.
 
-**Fix**: Add `extraNodeModules` to your `metro.config.js` as shown in [Step 2](#step-2-configure-metro). Map `stream` to `readable-stream` and stub the rest with the empty module.
+**Fix**: Add `extraNodeModules` to your `metro.config.js` as shown in [Step 2](#2-configure-metro). Map `stream` to `readable-stream` and stub the rest with the empty module.
 
 ### `Event is not defined` or `CustomEvent is not defined`
 
 **Cause**: React Native does not provide browser `Event`/`CustomEvent` classes that MetaMask Connect's internal event system requires.
 
-**Fix**: Ensure the `Event` and `CustomEvent` polyfills are included in your polyfills file as shown in [Step 3](#step-3-create-the-polyfills-file).
+**Fix**: Ensure the `Event` and `CustomEvent` polyfills are included in your polyfills file as shown in [Step 3](#3-create-the-polyfills-file).
 
 ### Expo Go not working
 
