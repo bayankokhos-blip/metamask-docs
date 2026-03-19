@@ -106,7 +106,7 @@ export const LoginProvider = ({ children }) => {
   const [userAPIKey, setUserAPIKey] = useState('')
   const [userEncPublicKey, setUserEncPublicKey] = useState(undefined)
   const { siteConfig } = useDocusaurusContext()
-  const { DASHBOARD_URL, LINEA_ENS_URL } = siteConfig?.customFields || {}
+  const { DASHBOARD_URL, LINEA_ENS_URL, INFURA_API_KEY } = siteConfig?.customFields || {}
 
   useEffect(() => {
     if (clientInitialized.current) return
@@ -118,7 +118,7 @@ export const LoginProvider = ({ children }) => {
       },
       api: {
         supportedNetworks: {
-          ...getInfuraRpcUrls({ infuraApiKey: 'INFURA_API_KEY' }),
+          ...getInfuraRpcUrls({ infuraApiKey: INFURA_API_KEY as string }),
         },
       },
     }).then(instance => {

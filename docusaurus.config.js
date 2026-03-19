@@ -131,6 +131,7 @@ const config = {
     DISCOURSE_API_KEY: process.env.DISCOURSE_API_KEY,
     DISCOURSE_API_USERNAME: process.env.DISCOURSE_API_USERNAME,
     DISCOURSE_CATEGORY_ID: process.env.DISCOURSE_CATEGORY_ID,
+    INFURA_API_KEY: process.env.INFURA_API_KEY || '',
   },
 
   trailingSlash: true,
