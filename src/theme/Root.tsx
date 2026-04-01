@@ -102,6 +102,8 @@ export const LoginProvider = ({ children }) => {
   const [client, setClient] = useState<MetamaskConnectEVM | null>(null)
   const [clientError, setClientError] = useState<string | null>(null)
   const clientInitialized = useRef(false)
+  const MAX_INIT_RETRIES = 3
+  const [initRetry, setInitRetry] = useState(0)
   const [step, setStep] = useState<AUTH_LOGIN_STEP>(AUTH_LOGIN_STEP.CONNECTING)
   const [walletLinked, setWalletLinked] = useState<WALLET_LINK_TYPE | undefined>(undefined)
   const [needsMfa, setNeedsMfa] = useState<boolean>(false)
@@ -112,8 +114,13 @@ export const LoginProvider = ({ children }) => {
   const { DASHBOARD_URL, LINEA_ENS_URL, INFURA_API_KEY } = siteConfig?.customFields || {}
 
   useEffect(() => {
+    if (client || initRetry >= MAX_INIT_RETRIES) return
     if (clientInitialized.current) return
     clientInitialized.current = true
+
+    let cancelled = false
+    let retryTimeoutId: ReturnType<typeof setTimeout>
+
     createEVMClient({
       dapp: {
         name: 'MetaMask Developer Documentation',
@@ -121,24 +128,36 @@ export const LoginProvider = ({ children }) => {
       },
       api: {
         supportedNetworks: {
+          '0xaa36a7': 'https://rpc.sepolia.org',
+          '0xe705': 'https://rpc.sepolia.linea.build',
           ...(INFURA_API_KEY
             ? getInfuraRpcUrls({ infuraApiKey: INFURA_API_KEY as string })
             : {}),
-          '0xaa36a7': 'https://rpc.sepolia.org',
-          '0xe705': 'https://rpc.sepolia.linea.build',
         },
       },
     })
       .then(instance => {
+        if (cancelled) return
         setClient(instance)
         setMetaMaskProvider(instance.getProvider())
       })
       .catch(error => {
+        if (cancelled) return
         console.error('MetaMask Connect EVM initialization failed:', error)
         setClientError(error?.message || 'Failed to initialize wallet connection')
         clientInitialized.current = false
+        retryTimeoutId = setTimeout(
+          () => setInitRetry(prev => prev + 1),
+          1000 * Math.pow(2, initRetry),
+        )
       })
-  }, [])
+
+    return () => {
+      cancelled = true
+      clientInitialized.current = false
+      clearTimeout(retryTimeoutId)
+    }
+  }, [initRetry])
 
   const fetchLineaEns = async (rawAddress: string) => {
     if (getWalletEns()) {
