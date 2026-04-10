@@ -313,6 +313,12 @@ export default function Root({ children }: { children: ReactElement }) {
             apiKey={algolia.apiKey}
             assistantId={algolia.assistantId || algolia.askAi?.assistantId}
             indexName={algolia.indexName}
+            translations={{
+              newConversationScreen: {
+                introductionText:
+                  'Have a question about integrating with MetaMask? Ask here and get an answer from the developer docs.',
+              },
+            }}
           />
         ) : null}
       </AlertProvider>
