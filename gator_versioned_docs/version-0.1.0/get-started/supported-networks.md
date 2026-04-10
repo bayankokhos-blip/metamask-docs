@@ -64,8 +64,10 @@ If you don't see the network you're looking for, you can request support by emai
 | Binance Smart Chain | ✅      |
 | Ethereum            | ✅      |
 | Gnosis              | ✅      |
+| Linea               | ✅      |
 | Optimism            | ✅      |
 | Polygon             | ✅      |
+| Sei                 | ✅      |
 | Sonic               | ✅      |
 | Unichain            | ✅      |
 
@@ -80,9 +82,11 @@ If you don't see the network you're looking for, you can request support by emai
 | Chiado              | ✅      |
 | Citrea              | ✅      |
 | Hoodi               | ✅      |
+| Linea Sepolia       | ✅      |
 | MegaEth             | ✅      |
 | Optimism Sepolia    | ✅      |
 | Polygon Amoy        | ✅      |
+| Sei                 | ✅      |
 | Sepolia             | ✅      |
 | Sonic               | ✅      |
 | Unichain Sepolia    | ✅      |
