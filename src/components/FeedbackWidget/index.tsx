@@ -40,7 +40,6 @@ export default function FeedbackWidget(): React.ReactNode {
           page_url: window.location.pathname,
           rating,
           reason: reason.trim(),
-          timestamp: new Date().toISOString(),
         }),
       })
       if (!res.ok) throw new Error(String(res.status))

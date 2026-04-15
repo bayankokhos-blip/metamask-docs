@@ -6,7 +6,6 @@ interface FeedbackBody {
   page_url: string
   rating: 'yes' | 'no'
   reason?: string
-  timestamp?: string
 }
 
 function stripHtml(text: string): string {
@@ -68,7 +67,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     return res.status(405).json({ error: 'Method not allowed' })
   }
 
-  const { page_url: pageUrl, rating, reason, timestamp } = req.body as FeedbackBody
+  const { page_url: pageUrl, rating, reason } = req.body as FeedbackBody
 
   if (!pageUrl || !rating || !['yes', 'no'].includes(rating)) {
     return res.status(400).json({ error: 'page_url and rating (yes/no) are required' })
@@ -84,7 +83,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     return res.status(400).json({ error: 'reason is required for negative feedback' })
   }
 
-  const ts = timestamp ?? new Date().toISOString()
+  const ts = new Date().toISOString()
 
   try {
     await appendToSheet([

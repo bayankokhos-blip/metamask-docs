@@ -10,7 +10,6 @@ import styles from './styles.module.css'
 export default function DocItemFooter() {
   const { metadata } = useDoc()
   const { editUrl, lastUpdatedAt, formattedLastUpdatedAt, lastUpdatedBy } = metadata
-  const canDisplayEditMetaRow = !!(editUrl || lastUpdatedAt || lastUpdatedBy)
 
   return (
     <footer className={clsx(ThemeClassNames.docs.docFooter, 'docusaurus-mt-lg docusaurus-mb-lg')}>
