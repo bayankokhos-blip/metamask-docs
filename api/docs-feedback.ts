@@ -58,6 +58,7 @@ async function appendToSheet(row: string[]) {
     spreadsheetId: process.env.GOOGLE_SHEET_ID!,
     range: 'Sheet1!A:E',
     valueInputOption: 'RAW',
+    insertDataOption: 'INSERT_ROWS',
     requestBody: { values: [row] },
   })
 }
