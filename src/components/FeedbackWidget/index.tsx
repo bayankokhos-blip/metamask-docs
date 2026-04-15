@@ -66,7 +66,9 @@ export default function FeedbackWidget(): React.ReactNode {
         throw new Error(body?.error || `Request failed (${res.status})`)
       }
     } catch (err) {
-      setErrorMsg(err instanceof Error ? err.message : 'Something went wrong. Please try again later.')
+      setErrorMsg(
+        err instanceof Error ? err.message : 'Something went wrong. Please try again later.'
+      )
       setPhase('error')
       setSubmitting(false)
       return
