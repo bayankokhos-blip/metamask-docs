@@ -67,6 +67,10 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     return res.status(405).json({ error: 'Method not allowed' })
   }
 
+  if (!req.body || typeof req.body !== 'object') {
+    return res.status(400).json({ error: 'Invalid or missing JSON body' })
+  }
+
   const { page_url: pageUrl, rating, reason } = req.body as FeedbackBody
 
   if (!pageUrl || !rating || !['yes', 'no'].includes(rating)) {
