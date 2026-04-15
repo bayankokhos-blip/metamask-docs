@@ -4,6 +4,22 @@ import styles from './styles.module.css'
 type Rating = 'yes' | 'no' | null
 type Phase = 'initial' | 'comment' | 'submitted' | 'error'
 
+function stripHtml(text: string): string {
+  let prev = text
+  for (;;) {
+    const next = prev.replace(/<[^>]*>/g, '')
+    if (next === prev) return next
+    prev = next
+  }
+}
+
+function sanitizeReason(text: string): string {
+  return stripHtml(text)
+    .replace(/!\[([^\]]*)\]\([^)]*\)/g, '$1')
+    .replace(/\[([^\]]*)\]\([^)]*\)/g, '$1')
+    .trim()
+}
+
 declare global {
   interface Window {
     dataLayer?: Record<string, unknown>[]
@@ -14,7 +30,10 @@ export default function FeedbackWidget(): React.ReactNode {
   const [rating, setRating] = useState<Rating>(null)
   const [phase, setPhase] = useState<Phase>('initial')
   const [reason, setReason] = useState('')
+  const [errorMsg, setErrorMsg] = useState('')
   const [submitting, setSubmitting] = useState(false)
+
+  const reasonIsEmpty = !sanitizeReason(reason)
 
   const handleRating = (selected: Rating) => {
     setRating(selected)
@@ -22,7 +41,7 @@ export default function FeedbackWidget(): React.ReactNode {
   }
 
   const handleSubmit = async () => {
-    if (rating === 'no' && !reason.trim()) return
+    if (rating === 'no' && reasonIsEmpty) return
     setSubmitting(true)
 
     window.dataLayer?.push({
@@ -42,8 +61,12 @@ export default function FeedbackWidget(): React.ReactNode {
           reason: reason.trim(),
         }),
       })
-      if (!res.ok) throw new Error(String(res.status))
-    } catch {
+      if (!res.ok) {
+        const body = await res.json().catch(() => null)
+        throw new Error(body?.error || `Request failed (${res.status})`)
+      }
+    } catch (err) {
+      setErrorMsg(err instanceof Error ? err.message : 'Something went wrong. Please try again later.')
       setPhase('error')
       setSubmitting(false)
       return
@@ -64,7 +87,7 @@ export default function FeedbackWidget(): React.ReactNode {
   if (phase === 'error') {
     return (
       <div className={styles.widget}>
-        <p className={styles.error}>Something went wrong. Please try again later.</p>
+        <p className={styles.error}>{errorMsg}</p>
       </div>
     )
   }
@@ -107,7 +130,7 @@ export default function FeedbackWidget(): React.ReactNode {
               type="button"
               className={styles.submitBtn}
               onClick={handleSubmit}
-              disabled={submitting || (rating === 'no' && !reason.trim())}>
+              disabled={submitting || (rating === 'no' && reasonIsEmpty)}>
               {submitting ? 'Sending...' : 'Submit'}
             </button>
           </div>
