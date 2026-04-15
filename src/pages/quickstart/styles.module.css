@@ -1446,3 +1446,13 @@ input:checked + .slider::before {
     border-radius: 8px !important;
   }
 }
+
+.feedbackSection {
+  padding: 3rem 2rem 6rem;
+  border-top: 1px solid var(--ifm-color-emphasis-200);
+  margin-top: 2rem;
+  min-height: 200px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}

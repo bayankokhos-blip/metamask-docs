@@ -13,7 +13,6 @@ import DocItemContent from '@theme/DocItem/Content'
 import DocBreadcrumbs from '@theme/DocBreadcrumbs'
 import CopyPageButton from '@site/src/components/CopyPageButton'
 import DocH1CopyPageWrapper from '@site/src/components/DocH1CopyPageWrapper'
-import FeedbackWidget from '../../../components/FeedbackWidget'
 import styles from './styles.module.css'
 
 const SITE_URL = 'https://docs.metamask.io'
@@ -73,7 +72,6 @@ function useDocTOC() {
 export default function DocItemLayout({ children }) {
   const docTOC = useDocTOC()
   const structuredData = useStructuredData()
-  const { metadata } = useDoc()
   return (
     <div className="row">
       {structuredData && (
@@ -91,7 +89,6 @@ export default function DocItemLayout({ children }) {
             <DocH1CopyPageWrapper />
             <CopyPageButton />
             <DocItemContent>{children}</DocItemContent>
-            <FeedbackWidget key={metadata.permalink} />
             <DocItemFooter />
           </article>
           <DocItemPaginator />
