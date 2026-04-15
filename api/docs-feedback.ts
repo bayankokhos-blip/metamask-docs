@@ -96,6 +96,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     ])
   } catch (err) {
     console.error('Google Sheets append failed:', err)
+    return res.status(500).json({ error: 'Failed to save feedback' })
   }
 
   return res.status(200).json({ ok: true })
