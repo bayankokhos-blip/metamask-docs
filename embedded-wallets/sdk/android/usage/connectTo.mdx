@@ -97,6 +97,24 @@ enum class AuthConnection {
 </TabItem>
 </Tabs>
 
+## Return Value: `Web3AuthResponse`
+
+`connectTo` returns a `CompletableFuture<Web3AuthResponse>`. The response contains:
+
+| Field                  | Type            | Description                                                                                                       |
+| ---------------------- | --------------- | ----------------------------------------------------------------------------------------------------------------- |
+| `privateKey`           | `String?`       | secp256k1 private key (EVM). Use `getPrivateKey()` for a safe accessor.                                           |
+| `ed25519PrivKey`       | `String?`       | Ed25519 private key (Solana, Near, etc.). Use `getEd25519PrivateKey()` for a safe accessor.                       |
+| `userInfo`             | `UserInfo?`     | User profile information. See [getUserInfo](./getUserInfo) for field details.                                     |
+| `coreKitKey`           | `String?`       | SFA key returned when `useSFAKey = true`.                                                                         |
+| `coreKitEd25519PrivKey`| `String?`       | SFA Ed25519 key returned when `useSFAKey = true`.                                                                 |
+| `factorKey`            | `String?`       | Factor key for MFA flows.                                                                                         |
+| `sessionId`            | `String?`       | Current session identifier.                                                                                       |
+| `signatures`           | `List<String>?` | Session token signatures for advanced use cases.                                                                  |
+| `error`                | `String?`       | Non-null when the session returned an error.                                                                      |
+
+Prefer the typed accessors `getPrivateKey()` and `getEd25519PrivateKey()` over reading `privateKey` directly — they correctly handle the `useSFAKey` flag and throw `IllegalStateException` instead of returning null when no key is available.
+
 ## Usage
 
 ```kotlin
@@ -106,11 +124,11 @@ import org.torusresearch.fetchnodedetails.types.Web3AuthNetwork
 
 val web3Auth = Web3Auth(
   Web3AuthOptions(
-    context = this,
     clientId = "YOUR_WEB3AUTH_CLIENT_ID", // Pass over your Web3Auth Client ID from Developer Dashboard
     web3AuthNetwork = Web3AuthNetwork.MAINNET,
     redirectUrl = "{YOUR_APP_PACKAGE_NAME}://auth",
-  )
+  ),
+  this
 )
 
 // focus-start
@@ -145,11 +163,11 @@ import org.torusresearch.fetchnodedetails.types.Web3AuthNetwork
 
 val web3Auth = Web3Auth(
   Web3AuthOptions(
-    context = this,
     clientId = "YOUR_WEB3AUTH_CLIENT_ID", // Pass over your Web3Auth Client ID from Developer Dashboard
     web3AuthNetwork = Web3AuthNetwork.MAINNET,
     redirectUrl = "{YOUR_APP_PACKAGE_NAME}://auth",
-  )
+  ),
+  this
 )
 
 // focus-start
@@ -170,11 +188,11 @@ import org.torusresearch.fetchnodedetails.types.Web3AuthNetwork
 
 val web3Auth = Web3Auth(
   Web3AuthOptions(
-    context = this,
     clientId = "YOUR_WEB3AUTH_CLIENT_ID", // Pass over your Web3Auth Client ID from Developer Dashboard
     web3AuthNetwork = Web3AuthNetwork.MAINNET,
     redirectUrl = "{YOUR_APP_PACKAGE_NAME}://auth",
-  )
+  ),
+  this
 )
 
 // focus-start
@@ -195,11 +213,11 @@ import org.torusresearch.fetchnodedetails.types.Web3AuthNetwork
 
 val web3Auth = Web3Auth(
   Web3AuthOptions(
-    context = this,
     clientId = "YOUR_WEB3AUTH_CLIENT_ID", // Pass over your Web3Auth Client ID from Developer Dashboard
     web3AuthNetwork = Web3AuthNetwork.MAINNET,
     redirectUrl = "{YOUR_APP_PACKAGE_NAME}://auth",
-  )
+  ),
+  this
 )
 
 // focus-start
@@ -220,11 +238,11 @@ import org.torusresearch.fetchnodedetails.types.Web3AuthNetwork
 
 val web3Auth = Web3Auth(
   Web3AuthOptions(
-    context = this,
     clientId = "YOUR_WEB3AUTH_CLIENT_ID", // Pass over your Web3Auth Client ID from Developer Dashboard
     web3AuthNetwork = Web3AuthNetwork.MAINNET,
     redirectUrl = "{YOUR_APP_PACKAGE_NAME}://auth",
-  )
+  ),
+  this
 )
 
 // focus-start
@@ -245,11 +263,11 @@ import org.torusresearch.fetchnodedetails.types.Web3AuthNetwork
 
 val web3Auth = Web3Auth(
   Web3AuthOptions(
-    context = this,
     clientId = "YOUR_WEB3AUTH_CLIENT_ID", // Pass over your Web3Auth Client ID from Developer Dashboard
     web3AuthNetwork = Web3AuthNetwork.MAINNET,
     redirectUrl = "{YOUR_APP_PACKAGE_NAME}://auth",
-  )
+  ),
+  this
 )
 
 // focus-start
@@ -273,11 +291,11 @@ import org.torusresearch.fetchnodedetails.types.Web3AuthNetwork
 
 val web3Auth = Web3Auth(
   Web3AuthOptions(
-    context = this,
     clientId = "YOUR_WEB3AUTH_CLIENT_ID", // Pass over your Web3Auth Client ID from Developer Dashboard
     web3AuthNetwork = Web3AuthNetwork.MAINNET,
     redirectUrl = "{YOUR_APP_PACKAGE_NAME}://auth",
-  )
+  ),
+  this
 )
 
 // focus-start
@@ -301,11 +319,11 @@ import org.torusresearch.fetchnodedetails.types.Web3AuthNetwork
 
 val web3Auth = Web3Auth(
   Web3AuthOptions(
-    context = this,
     clientId = "YOUR_WEB3AUTH_CLIENT_ID", // Pass over your Web3Auth Client ID from Developer Dashboard
     web3AuthNetwork = Web3AuthNetwork.MAINNET,
     redirectUrl = "{YOUR_APP_PACKAGE_NAME}://auth",
-  )
+  ),
+  this
 )
 
 // focus-start
@@ -326,11 +344,11 @@ import org.torusresearch.fetchnodedetails.types.Web3AuthNetwork
 
 val web3Auth = Web3Auth(
   Web3AuthOptions(
-    context = this,
     clientId = "YOUR_WEB3AUTH_CLIENT_ID", // Pass over your Web3Auth Client ID from Developer Dashboard
     web3AuthNetwork = Web3AuthNetwork.MAINNET,
     redirectUrl = "{YOUR_APP_PACKAGE_NAME}://auth",
-  )
+  ),
+  this
 )
 
 // focus-start
