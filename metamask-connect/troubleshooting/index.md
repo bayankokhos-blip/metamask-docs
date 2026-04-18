@@ -173,7 +173,7 @@ const client = await createEVMClient({
 })
 ```
 
-### MetaMask wallet not appearing in Solana wallet adapter
+### MetaMask wallet not appearing in Solana Wallet Adapter
 
 **Cause A:** `createSolanaClient` has not resolved before the `WalletProvider` renders.
 MetaMask uses the Wallet Standard auto-discovery protocol, but the wallet must be registered before
@@ -246,7 +246,7 @@ await client.disconnect(['eip155:1'])
 await client.disconnect()
 ```
 
-### Chrome Android Solana wallet-adapter issue {#chrome-android}
+### Chrome Android Solana Wallet Adapter issue {#chrome-android}
 
 There is a known issue with `@solana/wallet-adapter-react` on Chrome Android when used with the
 Wallet Standard provider from `@metamask/connect-solana`.
