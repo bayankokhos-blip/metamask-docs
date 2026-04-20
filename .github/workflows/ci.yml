@@ -106,10 +106,10 @@ jobs:
         file-extensions: ['.md', '.mdx']
     steps:
       - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
       - name: Vale
         uses: Consensys/github-actions/docs-spelling-check@main
-        with:
-          FILEPATHS: 'metamask-connect,smart-accounts-kit,embedded-wallets,snaps,services,developer-tools'
 
   linkCheck:
     name: Link Checking
