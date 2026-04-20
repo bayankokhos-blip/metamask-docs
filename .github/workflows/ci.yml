@@ -93,7 +93,7 @@ jobs:
             echo "No existing files to check (skipping)."
             exit 0
           fi
-          npx prettier --check $files_to_check
+          ./node_modules/.bin/prettier --check $files_to_check
       - name: No Prettier-scoped files changed
         if: steps.changed-files.outputs.any_changed != 'true'
         run: echo "No matching changed files; Prettier check skipped."
