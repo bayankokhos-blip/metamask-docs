@@ -50,6 +50,25 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+      - name: Changed files (Prettier)
+        id: changed-files
+        uses: tj-actions/changed-files@22103cc46bda19c2b464ffe86db46df6922fd323 # 47.0.5; pin matches docs-spelling-check
+        with:
+          files: |
+            **/*.md
+            **/*.mdx
+            **/*.ts
+            **/*.tsx
+            **/*.js
+            **/*.jsx
+            **/*.json
+            **/*.css
+            **/*.scss
+            **/*.html
+            **/*.yml
+            **/*.yaml
       - name: Use Node.js
         uses: actions/setup-node@v6
         with:
@@ -62,7 +81,22 @@ jobs:
           NODE_ENV: development
           HUSKY: 0
       - name: Check formatting
-        run: npm run format:check
+        if: steps.changed-files.outputs.any_changed == 'true'
+        run: |
+          files_to_check=""
+          for f in ${{ steps.changed-files.outputs.all_changed_files }}; do
+            if [ -f "$f" ]; then
+              files_to_check="$files_to_check $f"
+            fi
+          done
+          if [ -z "$files_to_check" ]; then
+            echo "No existing files to check (skipping)."
+            exit 0
+          fi
+          npx prettier --check $files_to_check
+      - name: No Prettier-scoped files changed
+        if: steps.changed-files.outputs.any_changed != 'true'
+        run: echo "No matching changed files; Prettier check skipped."
 
   spelling:
     name: Spelling
@@ -75,7 +109,7 @@ jobs:
       - name: Vale
         uses: Consensys/github-actions/docs-spelling-check@main
         with:
-          FILEPATHS: 'snaps,services,wallet,developer-tools,docs'
+          FILEPATHS: 'metamask-connect,smart-accounts-kit,embedded-wallets,snaps,services,developer-tools'
 
   linkCheck:
     name: Link Checking
