@@ -30,7 +30,7 @@ Key enhancements include:
 
 - Asynchronous initialization.
 - A singleton client.
-- Built-in support for EVM, [Solana](../../solana/index.md), and [multichain](../../multichain/index.md) sessions.
+- Built-in support for EVM, [Solana](../../solana/index.mdx), and [multichain](../../multichain/index.mdx) sessions.
 
 ## Steps
 

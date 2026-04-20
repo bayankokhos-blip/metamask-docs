@@ -53,8 +53,8 @@ If your dapp targets a single ecosystem, use [`@metamask/connect-evm`](evm/index
 
 ## Multi-ecosystem
 
-If your dapp supports both EVM and Solana, use [`@metamask/connect-evm`](evm/index.md) and
-[`@metamask/connect-solana`](solana/index.md) together to
+If your dapp supports both EVM and Solana, use [`@metamask/connect-evm`](evm/index.mdx) and
+[`@metamask/connect-solana`](solana/index.mdx) together to
 support both ecosystems while keeping familiar provider interfaces for each.
 
 ## Compare options
