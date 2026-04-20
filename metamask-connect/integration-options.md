@@ -49,7 +49,7 @@ If your dapp targets a single ecosystem, use [`@metamask/connect-evm`](evm/index
 - **EVM**: Provides an [EIP-1193](https://eips.ethereum.org/EIPS/eip-1193) compatible provider that
   works with `ethers.js`, `viem`, and `web3.js`.
 - **Solana**: Provides a [Wallet Standard](https://github.com/wallet-standard/wallet-standard)
-  compatible wallet that works with the Solana wallet adapter ecosystem.
+  compatible wallet that works with the Solana Wallet Adapter ecosystem.
 
 ## Multi-ecosystem
 

@@ -249,10 +249,10 @@ Each chain must be activated in your [Infura dashboard](https://developer.metama
 
 ### Parameters
 
-| Name           | Type       | Required | Description                                                                                                |
-| -------------- | ---------- | -------- | ---------------------------------------------------------------------------------------------------------- |
-| `infuraApiKey` | `string`   | Yes      | Your Infura API key.                                                                                       |
-| `chainIds`     | `string[]` | No       | Array of hex chain IDs to include (e.g. `['0x1', '0x89']`). If omitted, all supported chains are included. |
+| Name           | Type       | Required | Description                                                                                                        |
+| -------------- | ---------- | -------- | ------------------------------------------------------------------------------------------------------------------ |
+| `infuraApiKey` | `string`   | Yes      | Your Infura API key.                                                                                               |
+| `chainIds`     | `string[]` | No       | Array of hex chain IDs to include (for example, `['0x1', '0x89']`). If omitted, all supported chains are included. |
 
 ### Returns
 
