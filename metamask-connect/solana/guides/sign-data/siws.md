@@ -54,7 +54,7 @@ import { createSolanaClient } from '@metamask/connect-solana'
 
 const solanaClient = await createSolanaClient({
   dapp: {
-    name: 'My Solana DApp',
+    name: 'My Solana Dapp',
     url: window.location.origin,
   },
 })
@@ -98,4 +98,4 @@ See the [JavaScript quickstart](../../quickstart/javascript.md) for a complete w
 
 - [Sign messages](sign-message.md) for general-purpose offchain signatures without domain binding.
 - [Send a legacy transaction](../send-legacy-transaction.md) to transfer SOL or interact with Solana programs.
-- [MetaMask Connect Solana methods](../../reference/methods.md) for the full list of wallet-standard features.
+- [MetaMask Connect Solana methods](../../reference/methods.md) for the full list of Wallet Standard features.

@@ -92,7 +92,7 @@ recreate it on every render.
 // remove-start
 - const sdk = new MetaMaskSDK({
 -  dappMetadata: {
--    name: 'My DApp',
+-    name: 'My Dapp',
 -    url: window.location.href,
 -  },
 -   infuraAPIKey: 'YOUR_INFURA_KEY',
@@ -113,7 +113,7 @@ recreate it on every render.
 // add-start
 + const client = await createEVMClient({
 +  dapp: {
-+    name: 'My DApp',
++    name: 'My Dapp',
 +    url: window.location.href,
 +  },
 +  api: {
@@ -195,7 +195,7 @@ The method returns the signature directly:
 
 ```typescript
 const signature = await client.connectAndSign({
-  message: 'Sign in to My DApp',
+  message: 'Sign in to My Dapp',
   chainIds: ['0x1'],
 })
 ```
@@ -267,11 +267,15 @@ provider.on('disconnect', () => {
 })
 ```
 
-MetaMask Connect EVM also supports SDK-level event handlers that you register during initialization:
+MetaMask Connect EVM also supports SDK-level event handlers that you register during initialization.
+The `connect` handler receives both `chainId` and `accounts` (a MetaMask Connect extension of the
+standard EIP-1193 `connect` event, which only includes `chainId`).
+See the [Ethereum provider API events](../reference/provider-api.md#events) for the full event
+reference.
 
 ```typescript
 const client = await createEVMClient({
-  dapp: { name: 'My DApp' },
+  dapp: { name: 'My Dapp' },
   api: {
     supportedNetworks: {
       '0x1': 'https://mainnet.infura.io/v3/YOUR_KEY',
@@ -291,7 +295,13 @@ const client = await createEVMClient({
 })
 ```
 
-You can also listen for the `display_uri` event on the **provider** for custom QR code UI:
+You can also listen for the `display_uri` event on the **provider** for custom QR code UI.
+
+:::note Event naming
+The `eventHandlers` option uses camel case (`displayUri`), while the provider event uses snake case
+(`display_uri`).
+Both deliver the same URI string for QR code rendering.
+:::
 
 ```typescript
 const provider = client.getProvider()
@@ -308,7 +318,7 @@ MetaMask Connect EVM introduces features that are not available in `@metamask/sd
 | ---------------------- | ---------------------------------------------------------------------------------------------------------- |
 | **Multichain client**  | `createMultichainClient` from `@metamask/connect-multichain` supports CAIP-25 scopes across EVM and Solana |
 | **`invokeMethod`**     | Call RPC methods on specific CAIP-2 scopes without switching chains                                        |
-| **Solana support**     | `createSolanaClient` from `@metamask/connect-solana` with wallet-standard adapter                          |
+| **Solana support**     | `createSolanaClient` from `@metamask/connect-solana` with Wallet Standard adapter                          |
 | **`connectAndSign`**   | Connect and sign a message in a single user approval                                                       |
 | **`connectWith`**      | Connect and execute any RPC method in a single user approval                                               |
 | **Partial disconnect** | `disconnect(scopes)` revokes specific CAIP scopes while keeping others active                              |
@@ -325,7 +335,7 @@ straightforward:
 import { createMultichainClient } from '@metamask/connect-multichain'
 
 const multichainClient = await createMultichainClient({
-  dapp: { name: 'My DApp', url: window.location.href },
+  dapp: { name: 'My Dapp', url: window.location.href },
   api: {
     supportedNetworks: {
       'eip155:1': 'https://mainnet.infura.io/v3/YOUR_INFURA_API_KEY',
@@ -392,7 +402,7 @@ export function EVMProvider({ children }: { children: React.ReactNode }) {
     if (initialized.current) return
     initialized.current = true
     createEVMClient({
-      dapp: { name: 'My DApp', url: window.location.href },
+      dapp: { name: 'My Dapp', url: window.location.href },
       api: { supportedNetworks: getInfuraRpcUrls({ infuraApiKey: 'YOUR_INFURA_API_KEY' }) },
     }).then(setClient)
   }, [])

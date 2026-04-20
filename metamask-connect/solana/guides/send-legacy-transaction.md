@@ -1,7 +1,7 @@
 ---
 title: 'Send Solana Legacy Transactions - MetaMask Connect'
 sidebar_label: Send a legacy transaction
-description: Sign and send Solana legacy transactions through MetaMask Connect using the wallet-standard signAndSendTransaction feature with @solana/web3.js.
+description: Sign and send Solana legacy transactions through MetaMask Connect using the Wallet Standard signAndSendTransaction feature with @solana/web3.js.
 keywords:
   [
     solana,
@@ -33,7 +33,7 @@ import { Connection, Transaction, SystemProgram, PublicKey } from '@solana/web3.
 
 const solanaClient = await createSolanaClient({
   dapp: {
-    name: 'My Solana DApp',
+    name: 'My Solana Dapp',
     url: window.location.origin,
   },
 })
@@ -113,6 +113,14 @@ const [{ signedTransaction }] = await wallet.features['solana:signTransaction'].
 const txSignature = await connection.sendRawTransaction(signedTransaction)
 await connection.getSignatureStatus(txSignature)
 ```
+
+:::caution Chrome Android
+There is a known issue with `@solana/wallet-adapter-react` on Chrome Android when used with the
+Wallet Standard provider from `@metamask/connect-solana`.
+Test Solana transaction flows on desktop Chrome and the MetaMask browser extension before targeting
+mobile.
+See [Troubleshooting](../../troubleshooting/index.md#chrome-android) for details.
+:::
 
 ## Next steps
 

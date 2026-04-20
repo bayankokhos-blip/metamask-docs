@@ -65,9 +65,13 @@ await client.connect(['eip155:1', 'eip155:137', 'solana:5eykt4UsFv8P8NJdTREpY1vz
 Returns the current multichain session, including the approved scopes and accounts.
 Call this after [`connect`](#connect) to retrieve the accounts the user authorized.
 
+Access `getSession` through the `provider` property on the multichain client
+(`client.provider.getSession()`).
+
 ### Returns
 
-A promise that resolves to the current `Session` object containing `sessionScopes`, a map of CAIP-2 scope IDs to their approved accounts.
+A promise that resolves to the current `Session` object containing `sessionScopes`, a map of
+CAIP-2 scope IDs to their approved accounts.
 
 ### Example
 
@@ -272,7 +276,7 @@ Include all supported chains:
 import { createMultichainClient, getInfuraRpcUrls } from '@metamask/connect-multichain'
 
 const client = await createMultichainClient({
-  dapp: { name: 'My DApp', url: 'https://mydapp.com' },
+  dapp: { name: 'My Dapp', url: 'https://mydapp.com' },
   api: {
     supportedNetworks: {
       ...getInfuraRpcUrls({ infuraApiKey: 'YOUR_INFURA_API_KEY' }),
@@ -287,7 +291,7 @@ Include only specific chains using `caipChainIds`:
 import { createMultichainClient, getInfuraRpcUrls } from '@metamask/connect-multichain'
 
 const client = await createMultichainClient({
-  dapp: { name: 'My DApp', url: 'https://mydapp.com' },
+  dapp: { name: 'My Dapp', url: 'https://mydapp.com' },
   api: {
     supportedNetworks: {
       // Each chain must be active in your Infura dashboard
@@ -335,9 +339,36 @@ client.on('stateChanged', status => {
 })
 ```
 
+## Error classes
+
+`@metamask/connect-multichain` exports typed error classes for granular error handling:
+
+| Class           | Description                                                   |
+| --------------- | ------------------------------------------------------------- |
+| `RpcError`      | JSON-RPC errors from the wallet (includes `code` and `data`). |
+| `ProtocolError` | Connection protocol failures (transport, pairing, handshake). |
+| `StorageError`  | Session persistence issues (read/write failures).             |
+
+```javascript
+import { ProtocolError, RpcError, StorageError } from '@metamask/connect-multichain'
+
+try {
+  await client.connect(['eip155:1'], [])
+} catch (err) {
+  if (err instanceof RpcError) {
+    // Check err.code for specific RPC error codes (4001, -32002, etc.)
+  } else if (err instanceof ProtocolError) {
+    // Connection protocol failure
+  } else if (err instanceof StorageError) {
+    // Session persistence issue
+  }
+}
+```
+
 ## Next steps
 
 - Follow the [JavaScript quickstart](../quickstart/javascript.md) to set up MetaMask Connect Multichain in a dapp.
 - [Send transactions on EVM and Solana](../guides/send-transactions.md) using `invokeMethod`.
 - [Sign messages on EVM and Solana](../guides/sign-transactions.md) using `invokeMethod`.
+- [Use headless mode](../guides/headless-mode.md) for custom QR code rendering.
 - See the [Multichain API reference](api.md) for the underlying CAIP-25 protocol methods.
