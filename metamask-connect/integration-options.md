@@ -37,14 +37,14 @@ All options share the same underlying transport and session infrastructure, so y
 
 ## Multichain (recommended)
 
-Use [`@metamask/connect-multichain`](multichain/index.md) to work directly with the
+Use [`@metamask/connect-multichain`](multichain/index.mdx) to work directly with the
 [Multichain API](https://github.com/ChainAgnostic/CAIPs/blob/main/CAIPs/caip-25.md). This uses
 scopes and `wallet_invokeMethod` instead of per-chain RPC, and supports a single connection prompt
 across all ecosystems.
 
 ## Single-ecosystem
 
-If your dapp targets a single ecosystem, use [`@metamask/connect-evm`](evm/index.md) or [`@metamask/connect-solana`](solana/index.md) to add MetaMask Connect to an existing dapp with minimal code changes.
+If your dapp targets a single ecosystem, use [`@metamask/connect-evm`](evm/index.mdx) or [`@metamask/connect-solana`](solana/index.mdx) to add MetaMask Connect to an existing dapp with minimal code changes.
 
 - **EVM**: Provides an [EIP-1193](https://eips.ethereum.org/EIPS/eip-1193) compatible provider that
   works with `ethers.js`, `viem`, and `web3.js`.
