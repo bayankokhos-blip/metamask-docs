@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import styles from './styles.module.css'
 
 type Rating = 'yes' | 'no' | null
-type Phase = 'initial' | 'comment' | 'submitted' | 'error'
+type Phase = 'initial' | 'comment' | 'submitted'
 
 function stripHtml(text: string): string {
   let prev = text
@@ -43,6 +43,7 @@ export default function FeedbackWidget(): React.ReactNode {
   const handleSubmit = async () => {
     if (rating === 'no' && reasonIsEmpty) return
     setSubmitting(true)
+    setErrorMsg('')
 
     window.dataLayer?.push({
       event: 'docs_feedback',
@@ -69,7 +70,6 @@ export default function FeedbackWidget(): React.ReactNode {
       setErrorMsg(
         err instanceof Error ? err.message : 'Something went wrong. Please try again later.'
       )
-      setPhase('error')
       setSubmitting(false)
       return
     }
@@ -82,14 +82,6 @@ export default function FeedbackWidget(): React.ReactNode {
     return (
       <div className={styles.widget}>
         <p className={styles.thanks}>Thanks for your feedback!</p>
-      </div>
-    )
-  }
-
-  if (phase === 'error') {
-    return (
-      <div className={styles.widget}>
-        <p className={styles.error}>{errorMsg}</p>
       </div>
     )
   }
@@ -127,13 +119,18 @@ export default function FeedbackWidget(): React.ReactNode {
             rows={3}
             required={rating === 'no'}
           />
+          {errorMsg && (
+            <p className={styles.error} role="alert">
+              {errorMsg}
+            </p>
+          )}
           <div className={styles.actions}>
             <button
               type="button"
               className={styles.submitBtn}
               onClick={handleSubmit}
               disabled={submitting || (rating === 'no' && reasonIsEmpty)}>
-              {submitting ? 'Sending...' : 'Submit'}
+              {submitting ? 'Sending...' : errorMsg ? 'Try again' : 'Submit'}
             </button>
           </div>
         </div>

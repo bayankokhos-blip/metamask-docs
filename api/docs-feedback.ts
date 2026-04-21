@@ -71,10 +71,19 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     return res.status(400).json({ error: 'Invalid or missing JSON body' })
   }
 
-  const { page_url: pageUrl, rating, reason } = req.body as FeedbackBody
+  const { page_url: pageUrl, rating, reason } = req.body as Partial<FeedbackBody>
 
-  if (!pageUrl || !rating || !['yes', 'no'].includes(rating)) {
+  if (
+    typeof pageUrl !== 'string' ||
+    !pageUrl ||
+    typeof rating !== 'string' ||
+    !['yes', 'no'].includes(rating)
+  ) {
     return res.status(400).json({ error: 'page_url and rating (yes/no) are required' })
+  }
+
+  if (reason !== undefined && typeof reason !== 'string') {
+    return res.status(400).json({ error: 'reason must be a string' })
   }
 
   if (!isValidPageUrl(pageUrl)) {
