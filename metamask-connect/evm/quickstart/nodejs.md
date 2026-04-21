@@ -67,7 +67,7 @@ const evmClient = await createEVMClient({
 ```
 
 :::info Asynchronous client
-`createEVMClient` returns a promise. Always `await` it before using the client.
+[`createEVMClient`](../reference/methods.md#createevmclient) returns a promise. Always `await` it before using the client.
 :::
 
 ### 3. Connect to MetaMask

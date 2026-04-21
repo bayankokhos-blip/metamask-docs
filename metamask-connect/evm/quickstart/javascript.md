@@ -160,8 +160,8 @@ These examples configure MetaMask Connect EVM with the following options:
   Use the [`getInfuraRpcUrls`](../reference/methods.md#getinfurarpcurls) helper to generate URLs for all Infura-supported chains, or specify your own.
 
 :::info Asynchronous client
-`createEVMClient` returns a promise. Always `await` it before using the client.
-The client is a **singleton**; calling `createEVMClient` again returns the same instance.
+[`createEVMClient`](../reference/methods.md#createevmclient) returns a promise. Always `await` it before using the client.
+The client is a singleton; calling `createEVMClient` again returns the same instance.
 :::
 
 ### 3. Connect and use provider

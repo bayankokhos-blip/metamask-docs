@@ -68,8 +68,8 @@ const client = await createMultichainClient({
 ```
 
 :::info Asynchronous client
-`createMultichainClient` returns a promise. Always `await` it before using the client.
-The client is a **singleton**; calling it again returns the same instance with merged options.
+[`createMultichainClient`](../reference/methods.md#createmultichainclient) returns a promise. Always `await` it before using the client.
+The client is a singleton; calling it again returns the same instance with merged options.
 :::
 
 ### 3. Connect to MetaMask
