@@ -49,7 +49,7 @@ const publicKey = new PublicKey(account.address)
 const connection = new Connection('https://solana-devnet.infura.io/v3/<YOUR_INFURA_API_KEY>')
 ```
 
-## Build and send batch transactions
+## Steps
 
 ### 1. Build the transactions
 

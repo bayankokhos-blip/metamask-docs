@@ -41,7 +41,6 @@ Use those standard methods if you're building your own client or need lower-leve
 ## `createMultichainClient`
 
 Creates a new multichain client instance.
-Returns a promise—always `await` it before using the client. The client is a **singleton**: later calls merge options into the same instance.
 
 ### Parameters
 
