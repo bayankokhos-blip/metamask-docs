@@ -1,20 +1,9 @@
 ---
-title: 'Use Headless Mode - MetaMask Connect Multichain'
+title: 'Use Headless Mode - MetaMask Connect EVM'
 sidebar_label: Use headless mode
-description: Render a custom QR code or connection UI by using headless mode with MetaMask Connect Multichain.
+description: Render a custom QR code or connection UI by using headless mode with MetaMask Connect EVM.
 keywords:
-  [
-    headless,
-    QR code,
-    custom UI,
-    display_uri,
-    multichain,
-    MetaMask,
-    Connect,
-    connection,
-    modal,
-    deeplink,
-  ]
+  [headless, QR code, custom UI, display_uri, evm, MetaMask, Connect, connection, modal, deeplink]
 ---
 
 # Use headless mode
@@ -31,18 +20,18 @@ Use headless mode when you want to:
 
 ## Prerequisites
 
-Follow Step 1 of the [quickstart](../quickstart/javascript.md) to install the multichain client.
+Follow Step 1 of the [quickstart](../quickstart/javascript.md) to install the EVM client.
 
 ## Steps
 
 ### 1. Initialize the client with headless mode
 
-Initialize a multichain client using [`createMultichainClient`](../reference/methods.md#createmultichainclient), and set `ui.headless` to `true`:
+Initialize an EVM client using [`createEVMClient`](../reference/methods.md#createevmclient), and set `ui.headless` to `true`:
 
 ```javascript
-import { createMultichainClient, getInfuraRpcUrls } from '@metamask/connect-multichain'
+import { createEVMClient, getInfuraRpcUrls } from '@metamask/connect-evm'
 
-const client = await createMultichainClient({
+const evmClient = await createEVMClient({
   dapp: {
     name: 'My Dapp',
     url: window.location.href,
@@ -58,14 +47,18 @@ const client = await createMultichainClient({
 
 ### 2. Register a `display_uri` listener before connecting
 
-The `display_uri` event fires during the connecting phase with a one-time-use pairing URI.
+The `display_uri` event fires on the EIP-1193 [provider](../reference/provider-api.md) during the connecting phase with a one-time-use pairing URI.
 You **must** register the listener before calling `connect`, or you may miss the event:
 
 ```javascript
-client.on('display_uri', uri => {
+const provider = evmClient.getProvider()
+
+provider.on('display_uri', uri => {
   showCustomQrModal(uri)
 })
 ```
+
+As an alternative to `provider.on`, you can pass a `displayUri` callback when initializing the client via [`eventHandlers`](../reference/methods.md#createevmclient) (see the [migration guide](migrate-from-sdk.md#6-update-event-handling)).
 
 ### 3. Connect and handle the result
 
@@ -73,7 +66,7 @@ Call [`connect`](../reference/methods.md#connect) to connect to MetaMask, and ha
 
 ```javascript
 try {
-  await client.connect(['eip155:1', 'solana:5eykt4UsFv8P8NJdTREpY1vzqKqZKvdp'], [])
+  await evmClient.connect({ chainIds: ['0x1'] })
   hideCustomQrModal()
 } catch (err) {
   hideCustomQrModal()
@@ -107,8 +100,13 @@ No `display_uri` event fires because no QR code is needed.
 To display the QR connection option even when the extension is available, set `ui.preferExtension` to `false`:
 
 ```javascript
-const client = await createMultichainClient({
+const evmClient = await createEVMClient({
   dapp: { name: 'My Dapp', url: window.location.href },
+  api: {
+    supportedNetworks: {
+      ...getInfuraRpcUrls({ infuraApiKey: '<YOUR_INFURA_API_KEY>' }),
+    },
+  },
   ui: {
     headless: true,
     preferExtension: false,
@@ -118,28 +116,11 @@ const client = await createMultichainClient({
 
 ### Monitor connection status
 
-Use the [`stateChanged`](../reference/methods.md#events) event to track the connection lifecycle and update your UI accordingly:
-
-```javascript
-client.on('stateChanged', status => {
-  // status: 'loaded' | 'pending' | 'connecting' | 'connected' | 'disconnected'
-  switch (status) {
-    case 'connecting':
-      showLoadingIndicator()
-      break
-    case 'connected':
-      hideCustomQrModal()
-      showConnectedUI()
-      break
-    case 'disconnected':
-      showDisconnectedUI()
-      break
-  }
-})
-```
+The EVM client exposes a [`status`](../reference/methods.md#properties) property
+(`'loaded' | 'pending' | 'connecting' | 'connected' | 'disconnected'`) you can read when updating UI.
 
 ## Next steps
 
-- [Send transactions on EVM and Solana](send-transactions.md) using `invokeMethod`.
-- [Sign messages on EVM and Solana](sign-transactions.md) using `invokeMethod`.
-- See the [Multichain methods reference](../reference/methods.md) for the full API.
+- [Send transactions](send-transactions/index.md) in your JavaScript or Wagmi dapp.
+- [Sign data](sign-data/index.md) with the connected session.
+- See the [EVM methods reference](../reference/methods.md) for the full API.

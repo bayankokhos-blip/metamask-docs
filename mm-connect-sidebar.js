@@ -138,6 +138,7 @@ const metamaskConnectSidebar = {
           link: { type: 'doc', id: 'evm/guides/sign-data/index' },
           items: ['evm/guides/sign-data/siwe'],
         },
+        'evm/guides/headless-mode',
         'evm/guides/interact-with-contracts',
         {
           type: 'category',
@@ -280,9 +281,9 @@ const metamaskConnectSidebar = {
           collapsible: true,
           collapsed: true,
           items: [
-            'solana/guides/send-legacy-transaction',
-            'solana/guides/send-versioned-transaction',
-            'solana/guides/batch-transactions',
+            'solana/guides/send-transactions/legacy',
+            'solana/guides/send-transactions/versioned',
+            'solana/guides/send-transactions/batch',
           ],
         },
         {
